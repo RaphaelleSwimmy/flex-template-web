@@ -25,6 +25,7 @@ import {
   isCustomerReview,
   isProviderReview,
   txRoleIsProvider,
+  txRoleIsCustomer,
   getUserTxRole,
   isRelevantPastTransition,
 } from '../../util/transaction';
@@ -94,10 +95,10 @@ Review.propTypes = {
 };
 
 const hasUserLeftAReviewFirst = (userRole, transaction) => {
-  const isProvider = txRoleIsProvider(userRole);
-  return isProvider
-    ? txIsInFirstReviewBy(transaction, isProvider)
-    : txIsInFirstReviewBy(transaction, !isProvider);
+  // Because function txIsInFirstReviewBy uses isCustomer to check in which state the reviews are
+  // we should also use isCustomer insted of isProvider
+  const isCustomer = txRoleIsCustomer(userRole);
+  return txIsInFirstReviewBy(transaction, isCustomer);
 };
 
 const resolveTransitionMessage = (
@@ -152,7 +153,7 @@ const resolveTransitionMessage = (
       const userHasLeftAReview = hasUserLeftAReviewFirst(ownRole, transaction);
 
       const reviewLink =
-        reviewPeriodJustStarted || !(reviewPeriodIsOver || userHasLeftAReview) ? (
+        reviewPeriodJustStarted && !(reviewPeriodIsOver || userHasLeftAReview) ? (
           <InlineTextButton onClick={onOpenReviewModal}>
             <FormattedMessage id="ActivityFeed.leaveAReview" values={{ displayName }} />
           </InlineTextButton>
