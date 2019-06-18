@@ -58,7 +58,7 @@
   "BookingBreakdown.total": "Precio total",
   "BookingDatesForm.bookingEndTitle": "Fecha final",
   "BookingDatesForm.bookingStartTitle": "Fecha de inicio",
-  "BookingDatesForm.listingCurrencyInvalid": "Ups, la moneda del anuncio no se corresponde con la moneda del marketplace.",
+  "BookingDatesForm.listingCurrencyInvalid": "Ups, la divisa del anuncio no se corresponde con la divisa del marketplace.",
   "BookingDatesForm.listingPriceMissing": "Oops, a tu anuncio le falta el precio!",
   "BookingDatesForm.ownListing": "No puedes reservar tu propio anuncio.",
   "BookingDatesForm.placeholder": "dd/mm/yyyy",
